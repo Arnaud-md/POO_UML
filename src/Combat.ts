@@ -7,13 +7,18 @@ export class Combat {
     private donnerCoup1() {
         const rand = Math.random()*100;
         const mult = 0.13;
-        const degat = this.vikings[0].force+this.vikings[0].arme.force;
+        const multEpines = 0.5
+        const degat = this.vikings[0].getForceTotale();
         if(rand<90) {
             this.vikings[1].sante = this.vikings[1].sante - degat+(this.vikings[1].defense<degat ? this.vikings[1].defense : degat);
             console.log("la sante du viking "+this.vikings[1].nom+" est de : "+this.vikings[1].sante);
             if (this.vikings[0].arme.nom=="Lame de sang") {
                 this.vikings[0].sante += mult*(degat-(this.vikings[1].defense<degat ? this.vikings[1].defense : degat));
                 console.log("la sante du viking apres restauration "+this.vikings[0].nom+" est de : "+this.vikings[0].sante);
+            }
+            if (this.vikings[1].bouclier=="Cote Epineuse") {
+                this.vikings[0].sante -= multEpines*(degat-(this.vikings[1].defense<degat ? this.vikings[1].defense : degat));
+                console.log("la sante du viking "+this.vikings[0].nom+" est après les dégats d'épines de : "+this.vikings[0].sante)
             }
         }
         else {
@@ -23,18 +28,27 @@ export class Combat {
                 this.vikings[0].sante += mult*(2*degat-(this.vikings[1].defense<2*degat ? this.vikings[1].defense : 2*degat));
                 console.log("la sante du viking apres restauration "+this.vikings[0].nom+" est de : "+this.vikings[0].sante);
             }
+            if (this.vikings[1].bouclier=="Cote Epineuse") {
+                this.vikings[0].sante -= multEpines*(2*degat-(this.vikings[1].defense<2*degat ? this.vikings[1].defense : 2*degat));
+                console.log("la sante du viking "+this.vikings[0].nom+" est après les dégats d'épines de : "+this.vikings[0].sante);
+            }
         }
     }
     private donnerCoup2() {
         const rand = Math.random()*100;
         const mult = 0.13;
-        const degat = this.vikings[1].force+this.vikings[1].arme.force;
+        const multEpines = 0.5;
+        const degat = this.vikings[1].getForceTotale()
         if(rand<90) {
             this.vikings[0].sante = this.vikings[0].sante - degat+(this.vikings[0].defense<degat ? this.vikings[0].defense : degat);
             console.log("la sante du viking "+this.vikings[0].nom+" est de : "+this.vikings[0].sante);
             if (this.vikings[1].arme.nom=="Lame de sang") {
                 this.vikings[1].sante += mult*(degat-(this.vikings[0].defense<degat ? this.vikings[0].defense : degat));
                 console.log("la sante du viking  apres restauration "+this.vikings[1].nom+" est de : "+this.vikings[1].sante);
+            }
+            if (this.vikings[0].bouclier=="Cote Epineuse") {
+                this.vikings[1].sante -= multEpines*(degat-(this.vikings[0].defense<degat ? this.vikings[0].defense : degat));
+                console.log("la sante du viking "+this.vikings[1].nom+" est après les dégats d'épines de : "+this.vikings[1].sante)
             }
         }
         else {
@@ -43,6 +57,10 @@ export class Combat {
             if (this.vikings[1].arme.nom=="Lame de sang") {
                 this.vikings[1].sante += mult*(2*degat-(this.vikings[0].defense<2*degat ? this.vikings[0].defense : 2*degat));
                 console.log("la sante du viking apres restauration "+this.vikings[1].nom+" est de : "+this.vikings[1].sante);
+            }
+            if (this.vikings[0].bouclier=="Cote Epineuse") {
+                this.vikings[1].sante -= multEpines*(2*degat-(this.vikings[0].defense<2*degat ? this.vikings[0].defense : 2*degat));
+                console.log("la sante du viking "+this.vikings[1].nom+" est après les dégats d'épines de : "+this.vikings[1].sante);
             }
         }
     }

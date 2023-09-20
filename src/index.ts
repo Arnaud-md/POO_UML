@@ -18,8 +18,8 @@ import { Arme } from "./Arme"
 
 const epee = new Arme("Epée",14);
 const lameSang = new Arme("Lame de sang",16);
-const ragnar = new Viking("Ragnar",200,33,36,epee);
-const roar = new Viking("Roar",180,36,47,lameSang);
+const ragnar = new Viking("Ragnar",200,33,36,epee,"Cote Epineuse");
+const roar = new Viking("Roar",180,36,47,lameSang,"Bouclier");
 const bataille = new Combat([ragnar,roar]);
 bataille.debutCombat();
 
